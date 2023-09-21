@@ -1,0 +1,235 @@
+/* Reset some default styles for the page */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Change the font as needed */
+}
+
+/* Style the header bar */
+header {
+    background-color: rgb(255, 255, 255); /* Change this to your desired background color */
+color: rgb(0, 0, 0); /* Change this to your desired text color */
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+h1{
+    /* background-color: red; */
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.title{
+    display: flex;
+    background-color: #C10C25;
+    margin: 10px,20px,10px,20px;
+    align-items: flex-start;
+}
+
+/* Style the logo */
+.logo img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
+}
+
+/* Style the navigation menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px; /* Adjust spacing between menu items */
+}
+
+nav ul li:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 0, 0); /* Change this to your desired link color */
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Embed container */
+.embed-home {
+    display: flex;
+    flex: 0 0 100%;
+    height: 100vh;
+    background-color: #bbd;
+}
+
+/* Style the main content section */
+.main-content {
+    display: flex;
+    flex: 0 0 100%;
+    height: 100%;
+    background-color: #eee;
+    align-items: flex-start;
+}
+
+.left-column {
+    flex: 1;
+
+}
+
+.inner-left{
+    padding: 20px;
+}
+
+.filters {
+    list-style: none;
+    padding: 0;
+}
+
+.filters li {
+    margin-bottom: 10px;
+}
+
+.filters a {
+    text-decoration: none;
+    color: #333; /* Change this to your desired link color */
+}
+
+.map {
+    flex: 2; /* Adjust the width as needed */
+    height: 100%; /* Set the map's height */
+    background-color: #f0f0f0; /* Add a background color for the map */
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.info-boxes {
+    flex: 1;
+    padding: 1px;
+  
+    display: flex;
+    flex-direction: column;
+    overflow:scroll; 
+    height:100%;
+}
+
+.info {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff; /* Add a background color for the info boxes */
+    border: 1px solid #ccc; /* Add a border for the info boxes */
+}
+
+/* Style dropdowns2 */
+.dropdown2 {
+    position: relative;
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    
+    min-width: 10px;
+    z-index: 1;
+    list-style: none;
+}
+
+.dropdown2:hover .dropdown-content2 {
+    display: block;
+}
+
+.dropdown-content2 li {
+    padding: 10px;
+}
+
+.dropdown-content2 a {
+    text-decoration: none;
+}
+
+.dropdown-content2 a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Style dropdowns */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(116, 116, 116); /* Change this to your desired background color */
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    z-index: 1;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li {
+    padding: 10px;
+}
+
+.dropdown-content a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    text-decoration: underline;
+}
+.space-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: .5rem;
+   width: 70%;
+   margin-left: 3%;
+  }
+
+  .card{
+      border: 1px solid black;
+      background-color: #cccccc;
+      padding: .5rem;
+  }
+
+  .card > .header {
+      margin-bottom: .25rem;
+      font-family: 'Gambetta', serif;
+ font-weight: bold;
+ list-style: none;
+      font-variation-settings: "wght" 311;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+  }
+
+  .card > .body {
+      font-size: .8rem;
+      color: #ffffff;
+      font-family: 'Gambetta', serif;
+  }
+
+  .hide{
+      display: none;
+  }
+  .show{
+    display: block;
+  }
+
+
