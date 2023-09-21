@@ -71,6 +71,7 @@ nav ul li a:hover {
     display: flex;
     flex: 0 0 100%;
     height: 100vh;
+    max-height: 600px;
     background-color: #bbd;
 }
 
