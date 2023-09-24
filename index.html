@@ -19,6 +19,13 @@
           z-index: 1;
         }
       </style>
+        <style>
+          .dropdown-content2,
+          .dropdown-content3,
+          .dropdown-content4 {
+            display: none;
+          }
+        </style>
       <script src="search.js" defer></script>
     <!-- <header>
         <div class="logo">
@@ -35,8 +42,7 @@
         </nav>
     </header> -->
     <div class="embed-home">
-
-    <section class="main-content">
+    <div class="main-content">
         <div class="left-column">
           <div class="title">
             <h1>Safe Spaces</h1>
@@ -44,39 +50,71 @@
           </div>
             <div class="inner-left">
             <h2>Filters</h2>
+            <div>
+              <input type="button" id="removeFiltersButton" class="removeFiltersButton" value="Reset"/>
+            </div>
             <ul class="filters">
+              <li class="dropdown2">
+                <button class="dropbtn"  onclick="toggleDropdown('dropdown-content4')">Age</button>
+                  <ul class="dropdown-content4">
+                    <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="0-5" value="0-5" />
+                    <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="5-11" value="5-11" />
+                    <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="12-19" value="12-19" />
+                    <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Elders" value="Elders" />
+                    <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Families" value="Families" />
+                    <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Adults" value="Adults" />
+                 </ul> 
+              </li>
                     <li class="dropdown2">
-                        <a href="#">Age Group</a>
-                        <ul class="dropdown-content2">
-                            <li><a href="#">0-4</a></li>
-                            <li><a href="#">5-9</a></li>
-                            <li><a href="#">10-14</a></li>
-                            <li><a href="#">15+</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown2">
-                        <a href="#">Facilities</a>
+                      <button class="dropbtn"  onclick="toggleDropdown('dropdown-content2')">Facilities</button>
                         <ul class="dropdown-content2">
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="IndoorFacilities" value="Indoor Facilities" />
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="OutdoorFacilities" value="Outdoor Facilities" />
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Kitchen" value="Kitchen" />
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="WarmSpace" value="Warm Space" />
-                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Tester1" value="Tester 1" />
-                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Tester2" value="Tester 2" />
+                          <!-- <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Tester1" value="Tester 1" /> -->
+                          <!-- <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Tester2" value="Tester 2" /> -->
                         </ul>
                     </li>
-                    <li class="dropdown2">
-                        <a href="#">Access</a>
-                        <ul class="dropdown-content2">
-                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Kitchen available" value="Onsite Kitchen" />
-                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="parking" value="Onsite Parking" />
-                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Outdoor facilities" value="Outdoor Facilities" />
-                        </ul>
+                    <li class="dropdown3">
+                      <button class="dropbtn" onclick="toggleDropdown('dropdown-content3')">Access</button>
+                      <ul class="dropdown-content3">
+                        <input onclick="changeBackgroundColor(this)" type="button" class="filter-input" data-value="StepFreeAccess;" value="Step Free Access;" />
+                        <input onclick="changeBackgroundColor(this)" type="button" class="filter-input" data-value="AccessibleToilet" value="Accessible Toilet" />
+                        <input onclick="changeBackgroundColor(this)" type="button" class="filter-input" data-value="CloseToPublicTransport" value="Close To Public Transport" />
+                        <input onclick="changeBackgroundColor(this)" type="button" class="filter-input" data-value="Ramp" value="Ramp available" />
+                      </ul>
                     </li>
+              
             </ul>
-            <input  type="search" id="search" data-search>
+             <h2>Search</h2>
+            <label class="searchLabel" for="search">Search by name, address or postcode: </label>
+            <input  type="search" class="searchBar" id="search" data-search>
+         
         </div>
         </div>
+
+
+
+        <script>
+
+    
+          
+              function toggleDropdown(dropdownClass) {
+                const dropdown = document.querySelector('.' + dropdownClass);
+                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+              }
+            
+           
+            </script>
+
+
+
+
+
+
+
+
         <div class="map">
             <div id="issMap">
                 <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
@@ -84,130 +122,147 @@
               </div>
         </div>
 
-        <div class="info-boxes">
+        <div style="" class="info-boxes">
             <div class="space-cards" data-cards-cont>
                 <template data-search-temp>
                   <div class="card">
+                          
                     <li style="list-style: none;" class="dropdown">
-                        <div class="header" data-header></div>
-                        <ul class="dropdown-content">
-                          <li><a>Seasonal Information:</a>
-                            <div class="innerOne" data-season></div>
-                          </li>
+                      <div class="header" data-header></div>
+                      <ul class="dropdown-content">
                        
-                            <li><a>Facilities:</a>
-                              <div class="innerTwo" data-facilities></div>
-                            </li>
-                           
-                            
-                            <li><a>Parking available:</a>
-                              <div class="innerThree" data-accessibility></div>
-                            </li>
-                           
+                          <div class="innerOne" data-season></div>
+                        </li>
                         </ul>
                     </li>
-                  
+                   
                     <div class="body" data-body></div>
-                    
-                  </div>
+                 </div>
+                  
                 </template>  
               </div>
         </div>
+
+        <!-- <div  style="height:100px;" class="further-info" >
+
+<h1>Further Information</h1>
+<template data-search-temp>
+<li style="list-style: none;" class="dropdown">
+  <ul class="dropdown-content3">
+    <li><a>Seasonal Information:</a>
+      <div class="innerOne" data-season></div>
+    </li>
+ 
+      <li><a>Facilities:</a>
+        <div class="innerTwo" data-facilities></div>
+      </li>
+     
       
-    </section>
-  </div> <!-- embed div -->
+      <li><a>Parking available:</a>
+        <div class="innerThree" data-accessibility></div>
+      </li>
+  </ul>
+</template>
+
+        </div> -->
+       
+      </div>
+    </div>
 </body>
 <script>
      
 
-//   function changeBackgroundColor(element) {
-//     if (element.style.backgroundColor === "" || element.style.backgroundColor === "white") {
-//       element.style.backgroundColor = "#6d6d6d";
-//     } else {
-//       element.style.backgroundColor = "white";
-//     }
-//   }
+     function changeBackgroundColor(element) {
+    if (element.style.backgroundColor === "" || element.style.backgroundColor === "white") {
+      element.style.backgroundColor = "#ff6e6e";
+    } else {
+      element.style.backgroundColor = "white";
+    }
+  }
 
 
 
 
 
 
-//        // Making a map and tiles
-//        const mymap = L.map("issMap").setView([51.35420, -2.45917], 11);
-//       const attribution =
-//         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+       // Making a map and tiles
+       const mymap = L.map("issMap").setView([51.35420, -2.45917], 11);
+      const attribution =
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
-//       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-//       const tiles = L.tileLayer(tileUrl, { attribution });
-//       tiles.addTo(mymap);
+      const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+      const tiles = L.tileLayer(tileUrl, { attribution });
+      tiles.addTo(mymap);
 
       
-//       const scale = devicePixelRatio > 1.5 ? "@2x" : "";
-//       const keyerer = 'uGY0k3LEVIsN1HUIhJkj';
-//       L.tileLayer(
-//         `https://api.maptiler.com/maps/streets/{z}/{x}/{y}${scale}.png?key=${keyerer}`,
-//         {
-//           tileSize: 512,
-//           zoomOffset: -1,
-//           minZoom: 1,
-//           attribution:
-//             '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>, ' +
-//             '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-//           crossOrigin: true,
-//         }
-//       ).addTo(mymap);
+      const scale = devicePixelRatio > 1.5 ? "@2x" : "";
+      const keyerer = 'uGY0k3LEVIsN1HUIhJkj';
+      L.tileLayer(
+        `https://api.maptiler.com/maps/streets/{z}/{x}/{y}${scale}.png?key=${keyerer}`,
+        {
+          tileSize: 512,
+          zoomOffset: -1,
+          minZoom: 1,
+          attribution:
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>, ' +
+            '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+          crossOrigin: true,
+        }
+      ).addTo(mymap);
 
 
-//       L.control.maptilerGeocoding({ 
-//         apiKey: keyerer,
-//       placeholder: "search",
-//       collapsed: true,
-//       }).addTo(mymap);
+      L.control.maptilerGeocoding({ 
+        apiKey: keyerer,
+      placeholder: "search",
+      collapsed: true,
+      }).addTo(mymap);
      
       
 
 
-//       // Making a marker with a custom icon.
-//       const issIcon = L.icon({
-//         iconUrl: "Marker.png",
-//         iconSize: [28, 28],
-//         iconAnchor: [14, 28],
-//         popupAnchor:  [0, -20]
-//       });
+      // Making a marker with a custom icon.
+      const issIcon = L.icon({
+        iconUrl: "Marker.png",
+        iconSize: [28, 28],
+        iconAnchor: [14, 28],
+        popupAnchor:  [0, -20]
+      });
 
-//       const api_url = "https://api.sheety.co/fc5c71f9022f71a533593458b68c355b/communityAndChildren'sSpacesAndServicesMappingForPrototypeUse/sheet1";
+      //TK API
+      // const api_url = "https://api.sheety.co/fc5c71f9022f71a533593458b68c355b/communityAndChildrensSpacesAndServicesMapping/sheet1";
+      //DW API
+      const api_url = "https://api.sheety.co/a60dc9d9904d04eaacc75a9fb033bdee/communityAndChildrensSpacesAndServicesMapping/sheet1";
+      
+      async function getISS() {
+        const response = await fetch(api_url);
+        const data = await response.json();
 
-//       async function getISS() {
-//         const response = await fetch(api_url);
-//         const data = await response.json();
+        const places = data.sheet1.slice(1, 37); 
 
-//         const places = data.sheet1.slice(1, 37); 
+        places.forEach((place) => {
+  const marker = L.marker(
+    [parseFloat(place.latitude), parseFloat(place.longitude)],
+    { icon: issIcon }
+  ).addTo(mymap);
 
-//         places.forEach((place) => {
-//   const marker = L.marker(
-//     [parseFloat(place.latitude), parseFloat(place.longitude)],
-//     { icon: issIcon }
-//   ).addTo(mymap);
+  marker.on('mouseover', function(ev) {
+    console.log(place.venueName)
+    marker.openPopup();
+  });
 
-//   marker.on('mouseover', function(ev) {
-//     console.log(place.venueName)
-//     marker.openPopup();
-//   });
-
-//   marker.bindPopup(place.venueName);
+  marker.bindPopup(place.venueName);
   
 
-//   marker.getElement().classList.add("map-marker");
+  marker.getElement().classList.add("map-marker");
 
-//   markers.push(marker);
-// });
+  markers.push(marker);
+});
    
   
        
-//       }
+      }
 
-//       getISS();
+      getISS();
 
 
 
