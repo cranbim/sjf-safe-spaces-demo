@@ -117,10 +117,10 @@ nav ul li a:hover {
 .info-boxes {
     flex: 1;
     padding: 1px;
-  
+
     display: flex;
     flex-direction: column;
-    overflow:scroll; 
+    overflow:scroll;
     height:100%;
 }
 
@@ -140,7 +140,7 @@ nav ul li a:hover {
     display: none;
     position: absolute;
     top: 100%;
-    
+
     min-width: 10px;
     z-index: 1;
     list-style: none;
@@ -232,5 +232,3 @@ nav ul li a:hover {
   .show{
     display: block;
   }
-
-
