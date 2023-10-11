@@ -5,57 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Your Website</title>
+
+    <!-- Styling and access to the leaflet map and in built search bar. -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.maptiler.com/maptiler-geocoding-control/v0.0.97/leaflet.umd.js"></script>
-<link href="https://cdn.maptiler.com/maptiler-geocoding-control/v0.0.97/style.css" rel="stylesheet"/>
+    <link href="https://cdn.maptiler.com/maptiler-geocoding-control/v0.0.97/style.css" rel="stylesheet"/>
+
 </head>
 <body>
 
        <style>
+         /* Styling for the leaflet map. */
         #issMap {
           height: 100%;
-        
           z-index: 1;
         }
       </style>
-        <style>
-          .dropdown-content2,
-          .dropdown-content3,
-          .dropdown-content4 {
-            display: none;
-          }
-        </style>
+    
+    
+
       <script src="search.js" defer></script>
-    <!-- <header>
-        <div class="logo">
-            <img src="Logo.png" alt="Your Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#what-we-do">What We Do</a></li>
-                <li><a href="#why-we-do-it">Why We Do It</a></li>
-                <li><a href="#news-videos">News & Videos</a></li>
-                <li><a href="#contact-us">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header> -->
+
+      <!-- Main container for the program split into 3 sub containters -->
     <div class="embed-home">
     <div class="main-content">
+
         <div class="left-column">
+
           <div class="title">
             <h1>Safe Spaces</h1>
-
           </div>
+          
+
+          <!-- The left container containing the filters and the search bar. -->
             <div class="inner-left">
+            <!-- search bar to refine the cards and pins by area. -->
+            <h2>Search</h2>
+            <label class="searchLabel" for="search">Search by name, address or postcode: </label>
+            <input  type="search" class="searchBar" id="search" data-search>
+
             <h2>Filters</h2>
+
+           <!-- Reset button -->
             <div>
-              <input type="button" id="removeFiltersButton" class="removeFiltersButton" value="Reset"/>
+              <input onclick="resetBackgroundColor()" type="button" id="removeFiltersButton" class="removeFiltersButton" value="Reset"/>
             </div>
+            
+
+            <!-- filters lists including the three main filter headings and all the activatable filters. -->
             <ul class="filters">
+
+              <!-- Age Filters -->
               <li class="dropdown2">
-                <button class="dropbtn"  onclick="toggleDropdown('dropdown-content4')">Age</button>
+                <button onclick="changeBackgroundColor2(this), toggleDropdown('dropdown-content4')" class="dropbtn"  >Age</button>
                   <ul class="dropdown-content4">
                     <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="0-5" value="0-5" />
                     <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="5-11" value="5-11" />
@@ -65,19 +68,21 @@
                     <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Adults" value="Adults" />
                  </ul> 
               </li>
+
+                  <!-- Facilities Filters -->
                     <li class="dropdown2">
-                      <button class="dropbtn"  onclick="toggleDropdown('dropdown-content2')">Facilities</button>
+                      <button class="dropbtn"  onclick="changeBackgroundColor2(this), toggleDropdown('dropdown-content2')">Facilities</button>
                         <ul class="dropdown-content2">
-                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="IndoorFacilities" value="Indoor Facilities" />
+                          <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="IndoorFacilities" value="Indoor Facilities" filter-input/>
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="OutdoorFacilities" value="Outdoor Facilities" />
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Kitchen" value="Kitchen" />
                           <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="WarmSpace" value="Warm Space" />
-                          <!-- <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Tester1" value="Tester 1" /> -->
-                          <!-- <input onclick="changeBackgroundColor(this)" type="button" class="filter-input"  data-value="Tester2" value="Tester 2" /> -->
                         </ul>
                     </li>
+
+                    <!-- Accessability Filters -->
                     <li class="dropdown3">
-                      <button class="dropbtn" onclick="toggleDropdown('dropdown-content3')">Access</button>
+                      <button class="dropbtn" onclick="toggleDropdown('dropdown-content3'), changeBackgroundColor2(this)">Access</button>
                       <ul class="dropdown-content3">
                         <input onclick="changeBackgroundColor(this)" type="button" class="filter-input" data-value="StepFreeAccess;" value="Step Free Access;" />
                         <input onclick="changeBackgroundColor(this)" type="button" class="filter-input" data-value="AccessibleToilet" value="Accessible Toilet" />
@@ -87,9 +92,9 @@
                     </li>
               
             </ul>
-             <h2>Search</h2>
-            <label class="searchLabel" for="search">Search by name, address or postcode: </label>
-            <input  type="search" class="searchBar" id="search" data-search>
+            <!-- <br><br><br><br> -->
+
+           
          
         </div>
         </div>
@@ -98,14 +103,21 @@
 
         <script>
 
-    
-          
+              // Function for toggling the display of the filters.
               function toggleDropdown(dropdownClass) {
                 const dropdown = document.querySelector('.' + dropdownClass);
                 dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
               }
+
+              function resetDropdown(dropdownClass) {
+                const dropdown = document.querySelector('.' + dropdownClass);
+                dropdown.style.display = 'none';
+              }
+
+              resetDropdown('dropdown-content2');
+              resetDropdown('dropdown-content3');
+              resetDropdown('dropdown-content4');
             
-           
             </script>
 
 
@@ -114,75 +126,111 @@
 
 
 
-
+        <!-- Map container. -->
         <div class="map">
             <div id="issMap">
                 <a href="https://www.maptiler.com" style="position:absolute;left:10px;bottom:10px;z-index:999;"><img src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"></a>
-              
               </div>
         </div>
 
-        <div style="" class="info-boxes">
+
+        <!-- Container for the cards that display -->
+        <div class="info-boxes">
             <div class="space-cards" data-cards-cont>
                 <template data-search-temp>
                   <div class="card">
                           
-                    <li style="list-style: none;" class="dropdown">
-                      <div class="header" data-header></div>
+                    <li style="list-style: none;" class="dropdown passthrough">
+                      <div class="header passthrough" data-header></div>
                       <ul class="dropdown-content">
-                       
-                          <div class="innerOne" data-season></div>
-                        </li>
+                      
+                          <div class="innerOne" data-Info1></div>
+                          <div class="innerTwo" data-Info2></div>
+                          <div class="innerThree" data-Info3></div>
+                          <div class="innerFour" data-Info4></div>
+                     
                         </ul>
                     </li>
                    
-                    <div class="body" data-body></div>
+                    <div class="body passthrough" data-body></div>
                  </div>
                   
                 </template>  
               </div>
+              
         </div>
-
-        <!-- <div  style="height:100px;" class="further-info" >
-
-<h1>Further Information</h1>
-<template data-search-temp>
-<li style="list-style: none;" class="dropdown">
-  <ul class="dropdown-content3">
-    <li><a>Seasonal Information:</a>
-      <div class="innerOne" data-season></div>
-    </li>
- 
-      <li><a>Facilities:</a>
-        <div class="innerTwo" data-facilities></div>
-      </li>
-     
-      
-      <li><a>Parking available:</a>
-        <div class="innerThree" data-accessibility></div>
-      </li>
-  </ul>
-</template>
-
+        <!-- <div class="card-detail">
+          <div style="card-info-contents">
+            <p>Card details</p>
+          </div>
         </div> -->
+
+        <!-- container for the further information. -->
+        <div class="further-info">
+          <div class="further-info-display">
+            <h2 id="further-info-name">Click a venue name to display details</h2>
+            <p id="further-info-address"></p>
+            <div id="further-info-contents">
+              <p></p>
+              
+            </div>
+          </div>
+
+            <!-- <template data-search-temp>
+            <li style="list-style: none;" class="dropdown">
+              <ul class="dropdown-content3">
+                <li><a>Seasonal Information:</a>
+                  <div class="innerOne" data-season></div>
+                </li>
+            
+                  <li><a>Facilities:</a>
+                    <div class="innerTwo" data-facilities></div>
+                  </li>
+                
+                  
+                  <li><a>Parking available:</a>
+                    <div class="innerThree" data-accessibility></div>
+                  </li>
+              </ul>
+            </template> -->
+
+        </div>
        
       </div>
     </div>
 </body>
+
+
 <script>
      
-
+     //Function that chenges the background colour of the element it is attached to. From white to red.
      function changeBackgroundColor(element) {
-    if (element.style.backgroundColor === "" || element.style.backgroundColor === "white") {
-      element.style.backgroundColor = "#ff6e6e";
-    } else {
-      element.style.backgroundColor = "white";
-    }
+  if (element.style.backgroundColor === "" || element.style.backgroundColor === "white") {
+    element.style.backgroundColor = "#ff6e6e";
+  } else {
+    element.style.backgroundColor = "white";
   }
+}
 
+   //Function that chenges the background colour of the element it is attached to. From white to gray.
+   function changeBackgroundColor2(element) {
+  if (element.style.backgroundColor === "" || element.style.backgroundColor === "white") {
+    element.style.backgroundColor = "#e7e7e7";
+  } else {
+    element.style.backgroundColor = "white";
+  }
+}
 
-
-
+//Function that resets the background colour of all the filters (attached to the reset button).
+function resetBackgroundColor() {
+  var elements = document.querySelectorAll(".filter-input");
+  elements.forEach(function (element) {
+    element.style.backgroundColor = "white";
+  });
+  resetDropdown('dropdown-content2');
+  resetDropdown('dropdown-content3');
+  resetDropdown('dropdown-content4');
+}
 
 
        // Making a map and tiles
@@ -193,8 +241,6 @@
       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mymap);
-
-      
       const scale = devicePixelRatio > 1.5 ? "@2x" : "";
       const keyerer = 'uGY0k3LEVIsN1HUIhJkj';
       L.tileLayer(
@@ -211,6 +257,7 @@
       ).addTo(mymap);
 
 
+     //Search bar attached to the map.
       L.control.maptilerGeocoding({ 
         apiKey: keyerer,
       placeholder: "search",
@@ -220,7 +267,7 @@
       
 
 
-      // Making a marker with a custom icon.
+      // These are the markers that appear on the map at the location of the safe spaces.
       const issIcon = L.icon({
         iconUrl: "Marker.png",
         iconSize: [28, 28],
@@ -233,18 +280,22 @@
       //DW API
       const api_url = "https://api.sheety.co/a60dc9d9904d04eaacc75a9fb033bdee/communityAndChildrensSpacesAndServicesMapping/sheet1";
       
+
       async function getISS() {
         const response = await fetch(api_url);
         const data = await response.json();
 
+        // adjust this when adding a new safe space, takes the first 37 spaces of the table currently but as spaces are added increase the number.
         const places = data.sheet1.slice(1, 37); 
 
-        places.forEach((place) => {
-  const marker = L.marker(
+       // places markers for each safe space using the lattitude and longitudes provided in the data.
+       places.forEach((place) => {
+       const marker = L.marker(
     [parseFloat(place.latitude), parseFloat(place.longitude)],
     { icon: issIcon }
-  ).addTo(mymap);
+    ).addTo(mymap);
 
+  //This shows the name of the vendue on mouse over the marker.
   marker.on('mouseover', function(ev) {
     console.log(place.venueName)
     marker.openPopup();
